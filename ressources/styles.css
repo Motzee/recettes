@@ -12,6 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: "Sans-Serif";
 }
 
 a {
@@ -29,7 +30,7 @@ a {
 h1,
 nav>div,
 main,
-footer>div {
+#infos-footer {
     width: 80%;
     min-width: 600px;
     max-width: 1200px;
@@ -41,7 +42,7 @@ footer>div {
 /* BANNIERE */
 
 #entete {
-    background: #00FDFF;
+    background: #fffea3;
 }
 
 #logo-banniere {
@@ -56,17 +57,23 @@ h1 {
     font-size: 3em;
 }
 
+h1>a {
+    color: grey;
+}
+
 
 /* MENU de NAVIGATION */
 
 nav {
-    background: #F50046;
+    background: #dc9e98;
     text-align: center;
     padding: 0.75em;
 }
 
-nav a {
+nav a,
+footer a {
     margin-right: 1.5em;
+    color: white;
 }
 
 nav a:nth-of-type(1) {
@@ -106,9 +113,33 @@ footer {
     flex-grow: 1;
 }
 
-#infos-legales {
+#infos-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
+}
+
+
+/* FORMULAIRE d'AJOUT de RECETTE */
+
+.champ_aligne {
+    display: block;
+    width: 250px;
+    float: left;
+}
+
+.champ_decale {
+    margin-left: 250px;
+}
+
+input,
+select,
+textarea {
+    width: 250px;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 150px;
 }
