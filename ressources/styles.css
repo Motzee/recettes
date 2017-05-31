@@ -24,6 +24,17 @@ a {
     visibility: hidden;
 }
 
+.arrow {
+    height: 5em;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.icon {
+    height: 2rem;
+}
+
 
 /* POSITIONNEMENT */
 
@@ -88,6 +99,10 @@ h2 {
     text-align: center;
 }
 
+figure>img {
+    width: 300px;
+}
+
 article {
     border: 2px solid grey;
     margin-top: 1em;
@@ -97,12 +112,12 @@ article {
 }
 
 aside {
-    width: 320px;
-    float: right;
+    display: flex;
     border: 1px dotted grey;
     padding: 1em;
     margin-bottom: 1em;
     box-sizing: border-box;
+    margin-top: 2em;
 }
 
 
@@ -142,4 +157,20 @@ textarea {
 
 textarea {
     min-height: 150px;
+}
+
+form {
+    width: 35rem;
+    margin: auto;
+}
+
+
+/* classes atomiques */
+
+.align_droite {
+    text-align: right;
+}
+
+.centrer {
+    text-align: center;
 }

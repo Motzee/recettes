@@ -1,5 +1,3 @@
-
-
 <main>
 	<article>
         <h2>Poster une recette</h2>
@@ -26,7 +24,7 @@
 
     <p>illustration (en attente)</p>
 
-    <p><label for="ingredientsRecette" title="Séparer les différents ingrédients par des point-virgules" class="champ_aligne">Ingrédients nécessaires () :</label>
+    <p><label for="ingredientsRecette" title="Séparer les différents ingrédients par des point-virgules" class="champ_aligne">Ingrédients nécessaires :</label>
         <textarea id="ingredientsRecette" name="ingredientsRecette" required ></textarea></p>
 
     <p><label for="consignesRecette" title="Séparer les différentes étapes par des point-virgules" class="champ_aligne">Consignes de la recette :</label>

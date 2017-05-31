@@ -16,7 +16,7 @@
 	
 	include('vues/architect_header.php') ;
 	
-	include('vues/v_ajout-recette.php') ;
+	include('vues/v_edit-recette.php') ;
 	
 	include('vues/architect_footer.php') ;
 	

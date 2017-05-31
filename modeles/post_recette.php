@@ -1,7 +1,7 @@
 <?php
 
 /*on check si le formulaire est bien rempli, et on sécurise les variables*/
-$nomFichier = "test.php" ;
+ //devra prendre un compteur pour faire un id
 $titreRecette = $_POST['titreRecette'] ;
 $auteurRecette = $_POST['auteurRecette'] ;
 $categRecette = $_POST['categRecette'] ;
@@ -10,7 +10,17 @@ $ingredientsRecette = $_POST['ingredientsRecette'] ;
 $consignesRecette = $_POST['consignesRecette'] ;
 $astuceRecette = $_POST['astuceRecette'] ;
 
-//On prépare le contenu du fichier
+//préparation du nom de fichier grâce à un id et mise à jour du compteur
+$compteurRecettes = fopen('compteur.txt', 'r+');
+$nbRecettes = fgets($compteurRecettes) ;
+$nbRecettes += 1 ;
+$nomFichier = "recipe".$nbRecettes ;
+fseek($compteurRecettes, 0) ;
+fputs($compteurRecettes, $nbRecettes) ;
+fclose($compteurRecettes) ;
+
+
+//On prépare le contenu du fichier (ajouter un bouton de suppression et un bouton d'édition)
 $contenuFichier = "<figure>
 	<img id=\"illustration-article\" src=\"img/$photoRecette\" alt=\"\" title=\"photo de la recette réalisée\" />
 </figure>
@@ -68,6 +78,7 @@ $fichier = fopen($chemin, 'w+') ;
 $contenu = "je suis un test" ;
 fwrite($fichier, $contenuFichier) ;
 fclose($fichier) ;
+
 
 header('Location:../index.php');
 
