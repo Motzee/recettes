@@ -11,7 +11,7 @@ $consignesRecette = $_POST['consignesRecette'] ;
 $astuceRecette = $_POST['astuceRecette'] ;
 
 //préparation du nom de fichier grâce à un id et mise à jour du compteur
-$compteurRecettes = fopen('compteur.txt', 'r+');
+$compteurRecettes = fopen('../vues/recipes/nb-recettes.txt', 'r+');
 $nbRecettes = fgets($compteurRecettes) ;
 $nbRecettes += 1 ;
 $nomFichier = "recipe".$nbRecettes ;
@@ -71,14 +71,12 @@ switch ($categRecette) {
     default : echo "une erreur de catégorie est survenue" ;
 }
 
-$chemin = "../recettes/".$sousdossier."/".$nomFichier ;
+$chemin = "../vues/recipes/".$sousdossier."/".$nomFichier ;
 
 //Création du fichier dans le bon emplacement
 $fichier = fopen($chemin, 'w+') ;
-$contenu = "je suis un test" ;
 fwrite($fichier, $contenuFichier) ;
 fclose($fichier) ;
-
 
 header('Location:../index.php');
 
