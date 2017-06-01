@@ -155,6 +155,11 @@ textarea {
     box-sizing: border-box;
 }
 
+.recquis::after {
+    content: " *";
+    color: red;
+}
+
 textarea {
     min-height: 150px;
 }
