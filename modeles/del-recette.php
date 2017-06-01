@@ -8,7 +8,7 @@ if(!isset($_POST['categRecette']) || !isset($_POST['nomRecette'])) {
     $categorie = in_array($_POST['categRecette'], $categs) ? $_POST['categRecette'] : exit ;
     $nomFichier = $_POST['nomRecette'] ;
 
-    $chemin = "../vues/recipes/".$categorie."/".$nomFichier ;
+    $chemin = "../vues/recipes/".$categorie."/".$nomFichier.".json" ;
 
     //suppression du fichier s'il existe effectivement
     @unlink($chemin) ;

@@ -43,6 +43,19 @@ switch ($_POST['categRecette']) {
         exit ;
 }
 
+//préparation d'un objet php
+$recetteEnPhp = array(
+    'titre' => $titreRecette ,
+    'auteur' => $auteurRecette ,
+    'photo' => $photoRecette ,
+    'ingredients' => $ingredientsRecette ,
+    'etapes' => $consignesRecette ,
+    'astuce' => $astuceRecette
+);
+
+//conversion en json
+$recetteEnJSon = json_encode($recetteEnPhp) ;
+
 //préparation du nom de fichier grâce à un id et mise à jour du compteur
 $compteurRecettes = fopen('../vues/recipes/nb-recettes.txt', 'r+');
 $nbRecettes = fgets($compteurRecettes) ;
@@ -52,43 +65,32 @@ fseek($compteurRecettes, 0) ;
 fputs($compteurRecettes, $nbRecettes) ;
 fclose($compteurRecettes) ;
 
-//préparation des chemins
-$chemin = "../vues/recipes/".$sousdossier."/".$nomFichier ;
-$emplacementPhoto = "../ressources/photos/".$photoRecette ;
-
-
-//préparation du contenu du fichier (ajouter un bouton de suppression et un bouton d'édition)
-$contenuFichier = "<figure>
-	<img id=\"illustration-article\" src=\"img/$photoRecette\" alt=\"\" title=\"photo de la recette réalisée\" />
-</figure>
-
-<h2>$titreRecette</h2>
-
-<section>
-	<aside>
-    <h3>Ingrédients :</h3>
-		<ul>
-			$ingredientsRecette
-		</ul>
-        <p><em>recette proposée par : $auteurRecette</em></p>
-	</aside>
-	$consignesRecette
-    <br/>
-    Astuce : $astuceRecette
-	<hr class=\"cleareur\"/>
-</section>
-<p class=\"align_droite\">
-<a href=\"delete-recette.php?nom=$nomFichier&categ=$sousdossier\" title=\"\"><img src=\"ressources/img/suppr.png\" alt=\"\" title=\"\" class=\"icon\"/></a>
-<a href=\"edit-recette.php?nom=$nomFichier&categ=$sousdossier\" title=\"\"><img src=\"ressources/img/edit.png\" alt=\"\" title=\"\" class=\"icon\"/></a>
-</p>
-" ;
-
-
+//préparation du chemin
+$chemin = "../vues/recipes/".$sousdossier."/".$nomFichier.".json" ;
 
 //Création du fichier dans le bon emplacement
 $fichier = fopen($chemin, 'w+') ;
-fwrite($fichier, $contenuFichier) ;
+fwrite($fichier, $recetteEnJSon) ;
 fclose($fichier) ;
+
+//mise à jour du menu de navigation
+
+
+//récupérer le contenu du json actuel
+$cheminMenu = "../vues/recipes/menu.json" ;
+$leMenuActuel = file_get_contents($cheminMenu) ;
+$listeEnPhp = json_decode($leMenuActuel) ;
+
+//ajout de la recette et conversion en JSon
+$listeEnPhp->$sousdossier->$nomFichier = "$titreRecette" ;
+$listeEnJSon = json_encode($listeEnPhp) ;
+
+
+//réécriture dans le fichier
+
+$listing = fopen($cheminMenu, 'w+') ;
+fwrite($listing, $listeEnJSon) ;
+fclose($listing) ;
 
 header('Location:../index.php');
 http_response_code(200);
