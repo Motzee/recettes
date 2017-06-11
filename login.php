@@ -9,10 +9,9 @@
 <body>
 	
 	<?php
-	
 	include_once('vues/architect_header.php') ;
 	
-	include_once('vues/v_edit-recette.php') ;
+	include_once('vues/v_login.php') ;
 	
 	include_once('vues/architect_footer.php') ;
 	

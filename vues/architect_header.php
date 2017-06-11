@@ -2,15 +2,47 @@
 	<h1><img id="logo-banniere" src="ressources/img/logo.png" alt="" title="" /><a href="index.php" tile="retour à l'accueil">Cahier de recettes de LaLicorne</a>
 	</h1>
 	<nav>
-		<div>
-				<a href="recette.php" title="">Entrées</a
-				><a href="recette.php" title="">Plats</a
-				><a href="recette.php" title="">Desserts</a
-				><a href="recette.php" title="">Boissons</a
-				><a href="recette.php" title="">Gâteaux</a
-				><a href="recette.php" title="">Glaces</a
-				><a href="recette.php" title="">Friandises</a
-				><a href="recette.php" title="">Non-comestible</a>
-		</div>
+		<ul>
+			<li>Entrées
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>Plats
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>Desserts
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>Boissons
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>Gâteaux
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>Glaces
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>Friandises
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>Non-comestible
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+		</ul>
 	</nav>
 </header>

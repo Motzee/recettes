@@ -1,0 +1,27 @@
+/* FORMULAIRE d'AJOUT de RECETTE */
+
+.champ_aligne {
+    display: block;
+    width: 250px;
+    float: left;
+    text-align: right;
+}
+
+.champ_decale {
+    margin-left: 250px;
+}
+
+input,
+select,
+textarea {
+    width: 250px;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+form {
+    width: 35rem;
+    margin: auto;
+}

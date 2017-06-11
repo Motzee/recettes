@@ -11,14 +11,13 @@ $laRecette = json_decode($laRecette) ;
 
 $titreRecette = $laRecette -> {'titre'} ;
 $auteurRecette = $laRecette -> {'auteur'} ;
-//si vide, faire celle par défaut
-$photoRecette = $laRecette -> {'photo'} ;
+
+isset($laRecette -> {'ingredients'}) ? $photoRecette = $laRecette -> {'photo'} : $photoRecette = null ;
 
 $ingredientsRecette = $laRecette -> {'ingredients'} ;
 
 $etapesRecette = $laRecette -> {'etapes'} ;
 $astuceRecette = $laRecette -> {'astuce'} ;
-
 ?>
 
 <main><article>
@@ -28,7 +27,13 @@ $astuceRecette = $laRecette -> {'astuce'} ;
 <section>
 	<aside>
 		<figure>
-			<img id="illustration-article" src="ressources/photos/<?php echo $photoRecette ; ?>" alt="photo de <?php echo $titreRecette ; ?>" title="" />
+			<img id="illustration-article" src="<?php
+                if($photoRecette == null) {
+                    echo "ressources/img/illustration.jpg" ;
+                } else {
+                    echo "ressources/photos/$photoRecette" ;
+                }
+            ?>" alt="photo de <?php echo $titreRecette ; ?>" title="" />
 		</figure>
 		<div>
 			<h3>Ingrédients :</h3>

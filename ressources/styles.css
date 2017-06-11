@@ -1,5 +1,9 @@
 /* Général */
 
+* {
+    box-sizing: border-box;
+}
+
 body,
 h1,
 h2,
@@ -15,14 +19,23 @@ body {
     font-family: "Sans-Serif";
 }
 
+h1,
+nav>div,
+main,
+#infos-footer {
+    width: 80%;
+    min-width: 600px;
+    max-width: 1200px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
 a {
     text-decoration: none;
 }
 
-.cleareur {
-    clear: both;
-    visibility: hidden;
-}
+
+/* Elements de page */
 
 .arrow {
     height: 5em;
@@ -33,20 +46,6 @@ a {
 
 .icon {
     height: 2rem;
-}
-
-
-/* POSITIONNEMENT */
-
-h1,
-nav>div,
-main,
-#infos-footer {
-    width: 80%;
-    min-width: 600px;
-    max-width: 1200px;
-    box-sizing: border-box;
-    margin: auto;
 }
 
 
@@ -79,6 +78,18 @@ nav {
     background: #dc9e98;
     text-align: center;
     padding: 0.75em;
+    color: white;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav>ul {
+    display: flex;
+    justify-content: space-around;
 }
 
 nav a,
@@ -121,6 +132,91 @@ aside {
 }
 
 
+/* Formulaires */
+
+
+/* de connexion */
+
+.form-align {
+    max-width: 600px;
+    margin: auto;
+    background: grey;
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 2rem;
+}
+
+.form-align input[type="text"],
+.form-align input[type="password"] {
+    width: calc((600px - 4rem) / 3 * 2);
+    margin-top: -0.15rem;
+}
+
+.form-align .champ_aligne {
+    display: block;
+    width: calc((600px - 4rem) / 3 - 1rem);
+    float: left;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+.form-align .radio {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-align .radio>* {
+    width: 50%;
+    hyphens: auto;
+}
+
+.form-align .champ_decale {
+    margin-left: calc((600px - 4rem) / 3);
+}
+
+
+/*de recette*/
+
+#edit-recette .champ_aligne {
+    display: block;
+    width: 250px;
+    float: left;
+    text-align: right;
+}
+
+#edit-recette .champ_decale {
+    margin-left: 250px;
+}
+
+#edit-recette input,
+#edit-recette select,
+#edit-recette textarea {
+    width: 250px;
+}
+
+#edit-recette textarea {
+    min-height: 150px;
+}
+
+#edit-recette {
+    width: 35rem;
+    margin: auto;
+}
+
+
+/* formulaires généraux */
+
+input[type="radio"] {
+    position: relative;
+    top: 0.15rem;
+}
+
+label[required]::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+
 /* FOOTER */
 
 footer {
@@ -136,46 +232,22 @@ footer {
 }
 
 
-/* FORMULAIRE d'AJOUT de RECETTE */
+/* Atomiques */
 
-.champ_aligne {
-    display: block;
-    width: 250px;
-    float: left;
+.cleareur {
+    clear: both;
+    visibility: hidden;
 }
 
-.champ_decale {
-    margin-left: 250px;
-}
-
-input,
-select,
-textarea {
-    width: 250px;
-    box-sizing: border-box;
-}
-
-.recquis::after {
-    content: " *";
-    color: red;
-}
-
-textarea {
-    min-height: 150px;
-}
-
-form {
-    width: 35rem;
-    margin: auto;
-}
-
-
-/* classes atomiques */
-
-.align_droite {
+.droite {
     text-align: right;
 }
 
 .centrer {
     text-align: center;
+}
+
+.flex-reparti {
+    display: flex;
+    justify-content: space-around;
 }
