@@ -4,20 +4,22 @@ $catego = $_GET['categ'] ;
 $recette = $_GET['recette'] ;
 
 //je récupère le fichier json équivalent sur le serveur, je le transforme en objet php
-$fichier = "vues/recipes/".$catego."/".$recette.".json" ;
+    $fichier = "vues/recipes/".$catego."/".$recette.".json" ;
 
-$laRecette = file_get_contents($fichier) ;
-$laRecette = json_decode($laRecette) ;
+    $laRecette = file_get_contents($fichier) ;
+    $laRecette = json_decode($laRecette) ;
 
 $titreRecette = $laRecette -> {'titre'} ;
 $auteurRecette = $laRecette -> {'auteur'} ;
 
-isset($laRecette -> {'ingredients'}) ? $photoRecette = $laRecette -> {'photo'} : $photoRecette = null ;
+isset($laRecette -> {'photo'}) ? $photoRecette = $laRecette -> {'photo'} : $photoRecette = null ;
 
 $ingredientsRecette = $laRecette -> {'ingredients'} ;
 
 $etapesRecette = $laRecette -> {'etapes'} ;
-$astuceRecette = $laRecette -> {'astuce'} ;
+
+isset($laRecette -> {'astuce'}) ? $astuceRecette = $laRecette -> {'astuce'} : $astuceRecette = null ;
+
 ?>
 
 <main><article>
@@ -51,9 +53,14 @@ $astuceRecette = $laRecette -> {'astuce'} ;
     <p>Astuce : <?php echo $astuceRecette ; ?></p>
 	<hr class="cleareur"/>
 </section>
-<p class="align_droite">
-<a href="delete-recette.php?<?php echo "categ=" . $catego. "&nom=". $recette ;?>" title=""><img src="ressources/img/suppr.png" alt="" title="" class="icon"/></a>
-<a href="edit-recette.php?<?php echo "categ=" . $catego. "&nom=". $recette ;?>" title=""><img src="ressources/img/edit.png" alt="" title="" class="icon"/></a>
+<?php
+if(isset($pseudo)) {
+?>
+	<p class="droite">
+<a href="edit-recette.php?<?php echo "categ=" . $catego. "&recette=". $recette."&act=suppr" ;?>" title=""><img src="ressources/img/suppr.png" alt="" title="" class="icon"/></a>
+<a href="edit-recette.php?<?php echo "categ=" . $catego. "&recette=". $recette ;?>" title=""><img src="ressources/img/edit.png" alt="" title="" class="icon"/></a>
 </p>
-    
+<?php
+}
+?> 
 </article></main>

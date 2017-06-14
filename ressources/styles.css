@@ -148,7 +148,6 @@ aside {
 .form-align input[type="text"],
 .form-align input[type="password"] {
     width: calc((600px - 4rem) / 3 * 2);
-    margin-top: -0.15rem;
 }
 
 .form-align .champ_aligne {
@@ -214,6 +213,18 @@ label[required]::after {
     content: " *";
     color: red;
     font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    margin-top: -0.15rem;
+}
+
+label {
+    margin-right: 0.5rem;
 }
 
 
