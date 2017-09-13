@@ -11,8 +11,9 @@
             <a href="modeles/desinscription.php" title="Se désinscrire (mais que deviennent toutes les recettes postées par la personne ?)">Supprimer son compte définitivement</a>
         </p>
         <h3>Vos recettes</h3>
- 
-    <?php
+        <?php
+        listeRecetteMembre($pseudo) ;
+
         } else {
     ?>
         <h2>Authentifiez-vous</h2>
@@ -28,6 +29,24 @@
 
     <?php
         }
+
+
+    function listeRecetteMembre($membre) {
+        echo "<ul>" ;
+
+        //récupération de la liste brute
+        $chemin = "admin/membres.json" ;
+
+        $listeMembres = file_get_contents($chemin) ;
+        $listeMembres = json_decode($listeMembres) ;
+
+        $recettesDuMembre = $listeMembres -> $membre -> {'recettes'} ;
+        echo $recettesDuMembre ;
+        //foreach() {
+
+        //}
+        echo "</ul>" ;
+    }
     ?>
     </article>
 

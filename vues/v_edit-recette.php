@@ -66,14 +66,14 @@ if(!isset($_GET['act']) || $_GET['act'] != "suppr") {
                 }
             ?>/></p>
 
-        <p><label for="ingredientsRecette" title="Séparer les différents ingrédients par des point-virgules" class="champ_aligne" required >Ingrédients nécessaires</label>
+        <p><label for="ingredientsRecette" title="Séparer les différents ingrédients par des [*]" class="champ_aligne" required >Ingrédients nécessaires</label>
             <textarea id="ingredientsRecette" name="ingredientsRecette" required ><?php
                 if($edit == true) {
                     echo $ingredientsRecette ;
                 }
             ?></textarea></p>
 
-        <p><label for="consignesRecette" title="Séparer les différentes étapes par des point-virgules" class="champ_aligne" required >Consignes de la recette</label>
+        <p><label for="consignesRecette" title="Séparer les différentes étapes par des [*]" class="champ_aligne" required >Consignes de la recette</label>
             <textarea id="consignesRecette" name="consignesRecette" required ><?php
                 if($edit == true) {
                     echo $etapesRecette ;

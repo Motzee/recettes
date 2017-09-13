@@ -77,8 +77,10 @@ h1>a {
 nav {
     background: #dc9e98;
     text-align: center;
-    padding: 0.75em;
     color: white;
+    border: 1px solid grey;
+    border-left: none;
+    border-right: none;
 }
 
 nav ul {
@@ -87,19 +89,49 @@ nav ul {
     list-style: none;
 }
 
+nav ul il {
+    margin: 0;
+    padding: 0;
+}
+
 nav>ul {
     display: flex;
     justify-content: space-around;
 }
 
-nav a,
+nav>ul>li>a,
 footer a {
     margin-right: 1.5em;
+}
+
+nav>ul>li>a:nth-of-type(1) {
+    margin-left: 1.5em;
+}
+
+nav a,
+footer a {
     color: white;
 }
 
-nav a:nth-of-type(1) {
-    margin-left: 1.5em;
+nav>ul>li {
+    line-height: 3rem;
+}
+
+ul>li>ul {
+    position: absolute;
+    display: none;
+    z-index: 5;
+}
+
+ul>li:hover>ul {
+    background: #dc9e98;
+    display: block;
+    border: 1px solid grey;
+    border-top: none;
+    text-align: left;
+    padding: 1rem;
+    line-height: 1.2rem;
+    margin-left: -1rem;
 }
 
 

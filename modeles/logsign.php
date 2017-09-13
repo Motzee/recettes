@@ -54,7 +54,8 @@ if(isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['authentifie'
         } else {
             session_start();
             $_SESSION['pseudo'] = $_POST['pseudo'] ;
-            $_SESSION['statut'] = "user" ;
+
+            $_SESSION['statut'] = $membres->{$pseudo}->{'statut'} ;
         
             //redirection vers l'accueil
             header('Location:../login.php') ;

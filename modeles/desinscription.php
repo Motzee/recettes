@@ -1,6 +1,10 @@
 <?php
 require_once("gere-session.php") ;
 
+if($statut != "user" && $statut != "admin") {
+    exit(1) ;
+}
+
 if(!isset($pseudo) || !isset($statut) || $statut == "admin") {
     echo "il semble impossible de supprimer cet utilisateur, veuillez contacter l'administrateur" ;
 } else {

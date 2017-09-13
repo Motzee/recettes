@@ -1,6 +1,13 @@
 <?php
+include_once("gere-session.php") ;
+
+if($statut != "user" && $statut != "admin") {
+    exit(1) ;
+}
+
 $categExist = ["entrees", "plats", "boissons", "desserts", "gateaux", "glaces", "friandises", "non-comestibles"] ;
 
+//si on a demandé une édition
 if(isset($_POST['edition-recette']) && isset($_POST['edition-categ'])) {
     $edit = true ;
     $categO = filter_var($_POST['edition-categ'], FILTER_SANITIZE_STRING) ;
@@ -8,6 +15,9 @@ if(isset($_POST['edition-recette']) && isset($_POST['edition-categ'])) {
     in_array($categO, $categExist) ? $categOrigine = $categO : exit(1) ;
 
     $numRecette = filter_var($_POST['edition-recette'], FILTER_SANITIZE_STRING) ;
+
+    supprimeDuMenuNav($categOrigine, $numRecette) ;
+
 } else {
     $edit = false ;
 }
@@ -43,7 +53,6 @@ $recetteEnPhp = array(
 
 //conversion en json
 $recetteEnJSon = json_encode($recetteEnPhp) ;
-
 
 
 if($edit != true) {
@@ -82,25 +91,8 @@ $fichier = fopen($chemin, 'w+') ;
 fwrite($fichier, $recetteEnJSon) ;
 fclose($fichier) ;
 
-//mise à jour du menu de navigation (prévoir en cas d'édition : si même catégorie ne rien changer, si categ différente supprimer d'un côté et créer de l'autre)
-
-
-
-//récupérer le contenu du json actuel
-$cheminMenu = "../vues/recipes/menu.json" ;
-$leMenuActuel = file_get_contents($cheminMenu) ;
-$listeEnPhp = json_decode($leMenuActuel) ;
-
-//ajout de la recette et conversion en JSon
-$listeEnPhp->$sousdossier->$nomFichier = "$titreRecette" ;
-$listeEnJSon = json_encode($listeEnPhp) ;
-
-
-//réécriture dans le fichier
-
-$listing = fopen($cheminMenu, 'w+') ;
-fwrite($listing, $listeEnJSon) ;
-fclose($listing) ;
+//mise à jour du menu de navigation
+ajouteAuMenuNav($sousdossier, $nomFichier, $titreRecette) ;
 
 $redirige = "Location:../recette.php?categ=".$sousdossier."&recette=".$nomFichier ;
 
@@ -109,5 +101,37 @@ http_response_code(200);
 
 exit ;
 
+}
+
+/**Edition du menu de navigation pour retirer la référence*/
+function supprimeDuMenuNav($categorie, $nomFichier) {
+    //récupération du menu actuel
+    $menu = file_get_contents('../vues/recipes/menu.json') ;
+    $menu = json_decode($menu);
+
+    //suppression de la référence
+    unset($menu->{$categorie}->{$nomFichier}) ;
+
+    //réécriture du menu ainsi rectifié
+    $menu = json_encode($menu);
+    $fichier = fopen("../vues/recipes/menu.json", "w") ;
+    fwrite($fichier, $menu) ;
+    fclose($fichier) ;
+}
+
+/**Edition du menu de navigation pour ajouter la référence*/
+function ajouteAuMenuNav($categorie, $nomFichier, $titreRecette) {
+    //récupération du menu actuel
+    $menu = file_get_contents('../vues/recipes/menu.json') ;
+    $menu = json_decode($menu);
+
+    //ajout de la référence
+    $menu->$categorie->$nomFichier = "$titreRecette" ;
+
+//réécriture du menu ainsi rectifié
+    $menu = json_encode($menu);
+    $fichier = fopen("../vues/recipes/menu.json", "w") ;
+    fwrite($fichier, $menu) ;
+    fclose($fichier) ;
 }
 ?>

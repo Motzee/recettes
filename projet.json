@@ -1,0 +1,6 @@
+{
+	"titre_projet" : "Recettes",
+	"dispo" : true,
+	"apercu" : "vignette_recettes.jpg",
+	"description" : "consultez ou complétez le carnet de recettes après vous être inscrit/e sur la page login.php (html, css, sessions php, lecture/ecriture de fichiers en php, json"
+}

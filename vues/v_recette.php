@@ -39,22 +39,32 @@ isset($laRecette -> {'astuce'}) ? $astuceRecette = $laRecette -> {'astuce'} : $a
 		</figure>
 		<div>
 			<h3>Ingrédients :</h3>
-			<ul>
-				<li><?php echo $ingredientsRecette ; //faire une boucle pour lister les ingrédients
-				?></li>
-			</ul>
+			<?php 
+				echo "<ul>" ;
+				$ingredients = explode("[*]", $ingredientsRecette) ;
+				
+				foreach($ingredients as $ingr) {
+					echo "<li>$ingr</li>" ;
+				}
+				echo "</ul>" ;
+			?>
 		</div>
 	</aside>
-	<ol><li><?php echo $etapesRecette ; //faire une boucle pour lister les étapes
-	?>
-		</li>
-	</ol>
+	<?php 
+				echo "<ol>" ;
+				$etapes = explode("[*]", $etapesRecette) ;
+				
+				foreach($etapes as $step) {
+					echo "<li>$step</li>" ;
+				}
+				echo "</ol>" ;
+			?>
 
     <p>Astuce : <?php echo $astuceRecette ; ?></p>
 	<hr class="cleareur"/>
 </section>
 <?php
-if(isset($pseudo)) {
+if((isset($pseudo) && $pseudo == $auteurRecette) || (isset($pseudo) && $statut == "admin")) {
 ?>
 	<p class="droite">
 <a href="edit-recette.php?<?php echo "categ=" . $catego. "&recette=". $recette."&act=suppr" ;?>" title=""><img src="ressources/img/suppr.png" alt="" title="" class="icon"/></a>
