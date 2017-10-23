@@ -26,22 +26,25 @@
 <?php
 
 function lectureMenu($categorie) {
-	$menu = file_get_contents('vues/recipes/menu.json') ;
-    $menu = json_decode($menu);
+    if(file_exists("vues/recipes/menu.json")) {
+        $menu = file_get_contents('vues/recipes/menu.json') ;
+        $menu = json_decode($menu);
+     
+        
 
-    //ajout de la référence
-    $contenuCateg = $menu->$categorie ;
-	
-	if(!get_object_vars($contenuCateg) && !get_class_methods($contenuCateg)) {
-		
-	} else {
-		echo "<ul>" ;
-	
-		foreach($contenuCateg as $nom => $titre) {
-			echo '<li><a href="recette.php?categ='.$categorie.'&recette='.$nom.'" title="recette de '.$titre.'">'.$titre.'</a></li>' ;
-		}
-		echo "</ul>" ;
-	}
+        /*!get_object_vars($contenuCateg) && !get_class_methods($contenuCateg)*/
+            if(!isset($menu->$categorie) || $menu->$categorie == null) {
+            } else {
+            //ajout de la référence
+            $contenuCateg = $menu->$categorie ;
+                    echo "<ul>" ;
+
+                    foreach($contenuCateg as $nom => $titre) {
+                            echo '<li><a href="recette.php?categ='.$categorie.'&recette='.$nom.'" title="recette de '.$titre.'">'.$titre.'</a></li>' ;
+                    }
+                    echo "</ul>" ;
+            }
+    }
 }
 
 ?>

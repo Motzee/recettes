@@ -1,3 +1,4 @@
-ressources/photos
-vues/recipes
-admin
+ressources/photos/*
+vues/recipes/*
+admin/*
+nbproject/

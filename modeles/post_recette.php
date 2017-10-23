@@ -65,6 +65,10 @@ if($edit != true) {
     fputs($compteurRecettes, $nbRecettes) ;
     fclose($compteurRecettes) ;
 
+    if(!is_dir("../vues/recipes/".$sousdossier)) {
+        mkdir("../vues/recipes/".$sousdossier) ;
+    }
+    
     $chemin = "../vues/recipes/".$sousdossier."/".$nomFichier.".json" ;
 
 } elseif($edit == true && $categOrigine == $sousdossier) {

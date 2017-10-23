@@ -1,9 +1,29 @@
 <?php
 //on vérifie que le formulaire est bien rempli
 if(isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['authentifie'])) {
+    if(!file_exists("../admin/")) {
+        echo "Problème : absence d'un dossier admin disposant des permissions d'écriture, veuillez faire le nécessaire" ;
+    }
+    
+    if(!file_exists("../admin/hash")) {
+        //création du sel
+        $sel = hash('sha512', rand(0, 999999999999)) ;
+        $hash = file_put_contents('../admin/hash', $sel);
+        chmod('../admin/hash', 0600); 
+        fclose($hash) ;
+    }
+    
+    if(!file_exists("../admin/membres.json")) {
+        //création de la liste des membres
+        $listemembres = fopen('../admin/membres.json', 'w+') ;
+        chmod('../admin/membres.json', 0600); 
+        fclose($listemembres) ;
+    }
+    
     $pseudo = filter_var($_POST['pseudo'], FILTER_SANITIZE_STRING) ;
     $mdp = $_POST['mdp'].file_get_contents('../admin/hash') ;
     $mdpcuisine = hash('sha256', $mdp);
+    
 
     //si la personne veut s'inscrire
     if($_POST['authentifie'] == "signin") {
@@ -27,10 +47,8 @@ if(isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['authentifie'
             $membres = json_encode($membres);
 
             //enregistrement dans le fichier JSON de la nouvelle liste de membres
-            $fichier = fopen("../admin/membres.json", "w") ;
-            fwrite($fichier, $membres) ;
-            fclose($fichier) ;
-
+            file_put_contents('../admin/membres.json', $membres);
+            
             //on identifie direct la personne
             session_start();
             $_SESSION['pseudo'] = $_POST['pseudo'] ;
