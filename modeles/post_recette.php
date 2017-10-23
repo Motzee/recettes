@@ -25,6 +25,7 @@ if(isset($_POST['edition-recette']) && isset($_POST['edition-categ'])) {
 
 /*on check si le formulaire est bien rempli, et on sécurise les variables*/
 if(!isset($_POST['titreRecette']) || !isset($_POST['categRecette']) || !isset($_POST['ingredientsRecette']) || !isset($_POST['consignesRecette'])) {
+    echo "Un des champs nécessaires n'a pas été rempli" ;
     exit(1) ;
 } else {
 

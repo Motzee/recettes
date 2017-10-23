@@ -58,7 +58,6 @@ if(isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['authentifie'
             header('Location:../login.php') ;
             http_response_code(200);
             exit ;
-        exit ;
         }
         
 
@@ -68,7 +67,7 @@ if(isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['authentifie'
         $membres = json_decode($membres);
 
         if(!isset($membres->{$pseudo}) || $mdpcuisine != $membres->{$pseudo}->{'hash'} ) {
-            echo "Il y a une erreur dans le pseudo et/ou le mot de passe" ;
+            echo 'Il y a une erreur dans le pseudo et/ou le mot de passe. Cliquer <a href="../login.php" title="retour à la page d\'identification ou de création de compte">ici</a> pour revenir à la page d\'identification' ;
         } else {
             session_start();
             $_SESSION['pseudo'] = $_POST['pseudo'] ;
